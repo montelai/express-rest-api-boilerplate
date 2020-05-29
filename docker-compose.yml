@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  timescaledb:
+    image: timescale/timescaledb-postgis:latest-pg12
+    env_file: .env
+    expose: 55432
+    ports:
+      - '55432: 5432'
+    networks:
+      - backend:
+#   webapp:
+#     build: .
+#     expose: 8000
+#     ports:
+#       - '8000:8000'
+#     depends_on:
+#       - timescaledb
+#     networks:
+#       - backend:
