@@ -1,17 +1,19 @@
 const development = {
-  database: 'databasename',
-  username: 'username',
-  password: 'password',
+  database: 'crypto',
+  username: 'monte',
+  password: '88888888',
   host: 'localhost',
-  dialect: 'sqlite' || 'mysql' || 'postgres',
+  dialect: 'postgres',
+  port: 5432,
 };
 
 const testing = {
-  database: 'databasename',
-  username: 'username',
-  password: 'password',
+  database: 'crypto',
+  username: 'monte',
+  password: '88888888',
   host: 'localhost',
-  dialect: 'sqlite' || 'mysql' || 'postgres',
+  dialect: 'postgres',
+  port: 5432,
 };
 
 const production = {
@@ -19,7 +21,8 @@ const production = {
   username: process.env.DB_USER,
   password: process.env.DB_PASS,
   host: process.env.DB_HOST || 'localhost',
-  dialect: 'sqlite' || 'mysql' || 'postgres',
+  dialect: 'postgres',
+  port: 5432,
 };
 
 module.exports = {

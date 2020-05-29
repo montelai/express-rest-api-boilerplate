@@ -7,6 +7,7 @@ const helmet = require('helmet');
 const http = require('http');
 const mapRoutes = require('express-routes-mapper');
 const cors = require('cors');
+require('dotenv').config;
 
 /**
  * server configuration
@@ -32,11 +33,13 @@ const DB = dbService(environment, config.migrate).start();
 app.use(cors());
 
 // secure express app
-app.use(helmet({
-  dnsPrefetchControl: false,
-  frameguard: false,
-  ieNoOpen: false,
-}));
+app.use(
+  helmet({
+    dnsPrefetchControl: false,
+    frameguard: false,
+    ieNoOpen: false,
+  })
+);
 
 // parsing the request bodys
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -50,11 +53,15 @@ app.use('/public', mappedOpenRoutes);
 app.use('/private', mappedAuthRoutes);
 
 server.listen(config.port, () => {
-  if (environment !== 'production' &&
+  console.log(`Backend Server is now listening on port: ${config.port}`);
+  if (
+    environment !== 'production' &&
     environment !== 'development' &&
     environment !== 'testing'
   ) {
-    console.error(`NODE_ENV is set to ${environment}, but only production and development are valid.`);
+    console.error(
+      `NODE_ENV is set to ${environment}, but only production and development are valid.`
+    );
     process.exit(1);
   }
   return DB;
